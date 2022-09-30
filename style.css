@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #242B2E;
+}
+
+.Heading {
+    text-align: center;
+    font-family: 'Mukta', sans-serif;
+    color: antiquewhite;
+}
