@@ -16,6 +16,19 @@ body {
     place-items: center;
 }
 
+.welcome-heading {
+    display: flex;
+    justify-content: center;
+}
+
+.name{
+    margin-left: 4px;
+}
+
+.hey {
+    margin-right: 4px;
+}
+
 @keyframes changeBg {
     0% {
         background-color: #242222;
@@ -52,8 +65,92 @@ body {
     color: whitesmoke;
 }
 
+.about-p{
+    display: flex;
+}
+
+.emoji-start {
+    margin-right: 8px;
+}
+
+.emoji-end {
+    margin-left: 8px;
+}
+
+.divider-1 {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.divider-2 {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
 /* h1 {
     position: absolute;
     font-family: 'Mukta', sans-serif;
     color: whitesmoke;
 } */
+
+
+@media screen and (max-width: 750px) {
+    body {
+        display: flex;
+        justify-self: left;
+        align-self: flex-start;
+        font-size: larger;
+    }
+
+    .page-upper-layer {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .welcome-heading {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .name{
+        margin-left: 0px;
+    }
+    
+    .hey {
+        margin-right: 0px;
+    }
+
+    .about-p {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+    }
+    
+    .divider-1 {
+        display: none;
+    }
+
+    .divider-2 {
+        display: none;
+    }
+
+    .emoji-start {
+        margin-right: 0px;
+    }
+    
+    .emoji-end {
+        margin-left: 0px;
+    }
+    
+    .divider-1 {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    
+    .divider-2 {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
