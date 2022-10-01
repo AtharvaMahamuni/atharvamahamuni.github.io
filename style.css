@@ -44,7 +44,16 @@ body {
     background-size: cover;
 }
 
-.Heading {
-    text-align: center;   
-    color: antiquewhite;
+.page-upper-layer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    color: whitesmoke;
 }
+
+/* h1 {
+    position: absolute;
+    font-family: 'Mukta', sans-serif;
+    color: whitesmoke;
+} */
