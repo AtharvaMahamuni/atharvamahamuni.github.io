@@ -1,2 +1,2 @@
-# my-portfolio-web
+# atharvamahamuni.github.io
 This is my portfolio website.
