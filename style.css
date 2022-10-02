@@ -16,19 +16,6 @@ body {
     place-items: center;
 }
 
-.welcome-heading {
-    display: flex;
-    justify-content: center;
-}
-
-.name{
-    margin-left: 4px;
-}
-
-.hey {
-    margin-right: 4px;
-}
-
 @keyframes changeBg {
     0% {
         background-color: #242222;
@@ -50,6 +37,20 @@ body {
     }
 }
 
+.heading {
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+}
+
+.name{
+    margin-left: 4px;
+}
+
+.hey {
+    margin-right: 4px;
+}
+
 .particles-js{
     width: 100%;
     height: 100vh;
@@ -63,26 +64,20 @@ body {
     align-items: center;
     position: absolute;
     color: whitesmoke;
+    /* border: 1px solid red; */
 }
 
 .about-p{
     display: flex;
+    font-size: medium;
 }
 
-.emoji-start {
+.emoji-group {
     margin-right: 8px;
-}
-
-.emoji-end {
     margin-left: 8px;
 }
 
-.divider-1 {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-.divider-2 {
+.divider {
     margin-left: 8px;
     margin-right: 8px;
 }
@@ -97,14 +92,10 @@ body {
 /* Button animation */
 
 .button {
-    border-radius: 4px;
     background-color: #0d0d0d00;
     border: none;
     color: #FFFFFF;
-    text-align: center;
-    font-size: 15px;
-    padding: 10px;
-    width: 100px;
+    width: 120px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
@@ -138,15 +129,11 @@ body {
   .button-group {
     display: flex;
     margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
   }
 
-  .button {
-    margin-left: 10px;
-    margin-right: 10px;
+  a {
+    text-decoration: none;
   }
-
 
   @media screen and (max-width: 750px) {
     body {
@@ -162,7 +149,7 @@ body {
         flex-direction: column;
     }
 
-    .welcome-heading {
+    .heading {
         display: flex;
         flex-direction: column;
         align-self: flex-start;
@@ -183,43 +170,30 @@ body {
         /* border: 1px solid red; */
     }
     
-    .divider-1 {
+    .divider {
         display: none;
+        margin-left: 0px;
+        margin-right: 0px;
     }
 
-    .divider-2 {
-        display: none;
-    }
-
-    .emoji-start {
+    .emoji-group {
         margin-right: 0px;
-    }
-    
-    .emoji-end {
         margin-left: 0px;
-    }
-    
-    .divider-1 {
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-    
-    .divider-2 {
-        margin-left: 0px;
-        margin-right: 0px;
     }
 
     .button-group {
         display: flex;
         flex-direction: column;
         align-self: flex-start;
+        /* justify-self: left; */
         margin-top: 20px;
         /* border: 1px solid rebeccapurple; */
     }
 
     .button {
-        margin-left: -15px;
-        padding: 5px;
+        /* padding-top: 5px;
+        padding-bottom: 5px; */
+        /* border: 1px solid red; */
     }
    
 }
