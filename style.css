@@ -135,6 +135,20 @@ body {
     text-decoration: none;
   }
 
+  /* Coming soon page */
+  .cs-upper-layer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    color: whitesmoke;
+  }
+
+  .back {
+    text-decoration: none;
+    color: white;
+  }
+
   @media screen and (max-width: 750px) {
     body {
         display: flex;
