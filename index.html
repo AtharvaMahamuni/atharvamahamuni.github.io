@@ -13,6 +13,8 @@
 <meta name="theme-color" content="#F6F3EA">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__anim)document.documentElement.classList.remove("js")},2500)</script>
+<script src="main.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -31,7 +33,7 @@
   <div class="hero-text">
     <p class="badge"><span class="live" aria-hidden="true"></span>MTS-2 at Panasonic Avionics</p>
     <p class="hello">Hello, I'm</p>
-    <h1>Atharva<br>Mahamuni</h1>
+    <h1 class="h-in">Atharva<br>Mahamuni</h1>
     <p class="tag">Android Developer</p>
     <p class="lede">I build Android apps in Kotlin and Jetpack Compose with MVVM and Clean Architecture. Today that means in-flight entertainment apps on seat-back screens; before that, an internal app for the National Stock Exchange. I own features end to end, from UI and API integration to testing, CI/CD and release.</p>
     <div class="cta">
@@ -45,13 +47,16 @@
       <div><dt>3</dt><dd>product lines on a<br>shared framework</dd></div>
     </dl>
   </div>
-  <div class="hero-art" aria-hidden="false">
+  <div class="hero-art">
     <div class="orbit" aria-hidden="true"></div>
     <div class="ring" aria-hidden="true"></div>
     <img class="photo" src="assets/atharva-480.webp" width="480" height="480" alt="Atharva Mahamuni smiling outdoors in sunglasses with green hills behind">
-    <span class="chip chip-a" aria-hidden="true">Kotlin</span>
-    <span class="chip chip-b" aria-hidden="true">Compose</span>
-    <span class="label" aria-hidden="true">Pune, India</span>
+    <div class="sats" aria-hidden="true">
+      <span class="sat sat-a"><span class="chip">Kotlin</span></span>
+      <span class="sat sat-b"><span class="chip">Compose</span></span>
+      <span class="sat sat-c"><span class="label">Pune, India</span></span>
+      <span class="sat sat-d"><span class="bead"></span></span>
+    </div>
   </div>
   <span class="shape tri" aria-hidden="true"></span>
   <span class="shape dia" aria-hidden="true"></span>

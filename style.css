@@ -31,9 +31,6 @@ h1{font-size:clamp(48px,7vw,80px);line-height:1.02;letter-spacing:-.02em;margin:
 .orbit{position:absolute;inset:-26px;border:2px dashed var(--ink);border-radius:50%;opacity:.7}
 .ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--yellow) 0 62%,var(--blue) 62% 100%)}
 .photo{position:absolute;inset:26px;width:calc(100% - 52px);height:calc(100% - 52px);border-radius:50%;object-fit:cover;border:6px solid var(--bg)}
-.chip{position:absolute;background:#fff;border:2px solid var(--ink);border-radius:12px;padding:6px 12px;font-weight:700;font-size:14px;box-shadow:4px 4px 0 var(--ink)}
-.chip-a{top:6%;right:-6%}.chip-b{bottom:18%;left:-10%}
-.label{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:999px;white-space:nowrap}
 .shape{position:absolute;pointer-events:none}
 .tri{top:24px;left:44%;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:20px solid var(--coral)}
 .dia{top:60px;right:8%;width:20px;height:20px;background:var(--green);transform:rotate(45deg)}
@@ -54,14 +51,14 @@ h3{margin:0;font-size:20px}
 .points{margin:0;padding-left:20px;color:#2C3550}.points li{margin:6px 0}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
 .card{display:flex;flex-direction:column;background:#fff;border:2px solid var(--ink);border-radius:18px;padding:24px;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+
 .card.featured{background:var(--yellow);grid-column:1/-1}
 .card p{margin:8px 0}
 .kind{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral)}
 .featured .kind{color:var(--ink)}
 .stack{font-size:14px;color:var(--muted)}.featured .stack{color:var(--ink)}
 .links{margin-top:auto!important;display:flex;gap:16px;padding-top:8px}
-.links a{font-weight:700;font-size:15px;text-decoration:none;border-bottom:2px solid var(--blue)}
+
 .band{background:var(--ink);color:#fff}
 .band-inner{max-width:1180px;margin:0 auto;padding:64px clamp(20px,4vw,56px)}
 .skills{margin:12px 0 0;display:grid;gap:14px}
@@ -85,6 +82,53 @@ a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
  .stats{gap:24px}
  .skills>div{grid-template-columns:1fr;gap:8px}
  .edu-meta{text-align:left}
- .chip-b{left:-4%}.chip-a{right:-2%}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Orbiting hero decorations ---------- */
+.chip{display:inline-block;background:#fff;border:2px solid var(--ink);border-radius:12px;padding:6px 12px;font-weight:700;font-size:14px;color:var(--ink);box-shadow:4px 4px 0 var(--ink);white-space:nowrap}
+.label{display:inline-block;background:var(--ink);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.bead{display:block;width:16px;height:16px;border-radius:4px;background:var(--coral);border:2px solid var(--ink)}
+.sats{position:absolute;inset:-26px;pointer-events:none}
+.sat{position:absolute;width:0;height:0;display:flex;align-items:center;justify-content:center}
+.sat>*{flex:none}
+.sat-a{top:11%;left:89%}.sat-b{top:72%;left:2%}.sat-c{top:100%;left:50%}.sat-d{top:14%;left:10%}
+.links a{font-weight:700;font-size:15px;text-decoration:none;background:linear-gradient(var(--blue),var(--blue)) 0 100%/100% 2px no-repeat;position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.links a:hover::after,.links a:focus-visible::after{transform:scaleX(1)}
+.nav{transition:box-shadow .3s ease}
+.nav.scrolled{box-shadow:0 6px 24px -12px rgba(22,34,63,.35)}
+.nav nav a:not(.pill){position:relative}
+.nav nav a:not(.pill)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.nav nav a:not(.pill):hover::after,.nav nav a.active::after{transform:scaleX(1)}
+.nav nav a.active{color:var(--blue)}
+.card{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease}
+.card:hover,.card:focus-within{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink)}
+.btn{transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 6px 0 -2px var(--ink)}
+.btn span{display:inline-block;transition:transform .2s ease}.btn:hover span{transform:translateX(4px)}
+.skills dd span{transition:transform .2s ease,background-color .2s ease,border-color .2s ease}
+.skills dd span:hover{transform:translateY(-2px);background:#2A3A63;border-color:#6F9BFF}
+
+@media (prefers-reduced-motion:no-preference){
+ .orbit{animation:spin 60s linear infinite}
+ .ring{animation:spin 40s linear infinite reverse}
+ .sats{animation:spin 48s linear infinite}
+ .sat>*{animation:spin 48s linear infinite reverse}
+ .sat-d>*{animation:spin 6s linear infinite}
+ .tri{animation:spin 18s linear infinite}
+ .dia{animation:spin45 24s linear infinite reverse}
+ .ring-s{animation:bob 6s ease-in-out infinite}
+ @keyframes spin{to{transform:rotate(360deg)}}
+ @keyframes spin45{from{transform:rotate(45deg)}to{transform:rotate(405deg)}}
+ @keyframes bob{50%{transform:translateY(-10px)}}
+
+ /* entrance + reveal only when JS is running */
+ .js .hero-text>*{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+ .js .hero-art{opacity:0;transform:scale(.88);transition:opacity .9s ease .25s,transform .9s cubic-bezier(.2,.7,.2,1) .25s}
+ .js.ready .hero-text>*{opacity:1;transform:none}
+ .js.ready .hero-art{opacity:1;transform:none}
+ .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+ .js .reveal.in{opacity:1;transform:none}
+}
+.stats dt{font-variant-numeric:tabular-nums}
