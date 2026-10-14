@@ -15,11 +15,9 @@
   });
   if(reduce||!('IntersectionObserver' in window)){targets.forEach(function(el){el.classList.add('in');});}
   else{
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');io.unobserve(el);el.addEventListener('transitionend',function clr(ev){if(ev.target!==el||ev.propertyName!=='opacity')return;el.style.transitionDelay='';el.removeEventListener('transitionend',clr);});}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
     targets.forEach(function(el){io.observe(el);});
   }
-  // Clear reveal delays after entry so hover stays snappy
-  document.addEventListener('transitionend',function(e){if(e.target.classList&&e.target.classList.contains('in'))e.target.style.transitionDelay='';});
   // Header shadow + active section
   var nav=document.querySelector('.nav');
   var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>8);};
@@ -31,7 +29,7 @@
   }
   // Count-up for the hero stats
   if(!reduce){
-    document.querySelectorAll('.stats dt').forEach(function(dt){
+    document.querySelectorAll('.stats dt .num').forEach(function(dt){
       var end=parseInt(dt.textContent,10);if(!end)return;var t0=null;dt.textContent='0';
       function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1100,1);dt.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);}
       setTimeout(function(){requestAnimationFrame(step);},500);
