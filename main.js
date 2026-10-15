@@ -27,11 +27,14 @@
     var so=new IntersectionObserver(function(es){es.forEach(function(e){var a=links[e.target.id];if(!a)return;if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('active');});a.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
     document.querySelectorAll('main section[id]').forEach(function(s){so.observe(s);});
   }
-  // Count-up for the hero stats
+  // Count-up: the real value stays in the DOM text (screen readers, copy, CSS off);
+  // the animated digits are drawn by an ::after pseudo with empty alt text.
   if(!reduce){
-    document.querySelectorAll('.stats dt .num').forEach(function(dt){
-      var end=parseInt(dt.textContent,10);if(!end)return;var t0=null;dt.textContent='0';
-      function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1100,1);dt.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);}
+    document.querySelectorAll('.stats dt').forEach(function(dt){
+      var end=parseInt(dt.textContent,10);if(!end)return;var t0=null;
+      dt.setAttribute('data-count','0');dt.classList.add('counting');
+      function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1100,1);dt.setAttribute('data-count',Math.round(end*(1-Math.pow(1-p,3))));
+        if(p<1)requestAnimationFrame(step);else{dt.classList.remove('counting');dt.removeAttribute('data-count');}}
       setTimeout(function(){requestAnimationFrame(step);},500);
     });
   }

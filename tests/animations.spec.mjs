@@ -38,15 +38,26 @@ async function test(name, opts, fn) {
   await ctx.close();
 }
 const assert = (c, m) => { if (!c) throw new Error(m); };
-const hiddenCount = p => p.evaluate(() => [...document.querySelectorAll('.hero-text>*,.hero-art,.reveal,.card,.job,section')].filter(e => parseFloat(getComputedStyle(e).opacity) < 1).length);
-const stats = p => p.evaluate(() => [...document.querySelectorAll('.stats dt')].map(d => [d.querySelector('.num').textContent, d.querySelector('.sr-only').textContent, d.querySelector('.num').getAttribute('aria-hidden')]));
+// An element counts as hidden if it is transparent OR still offset/scaled by the entrance/reveal.
+const hiddenCount = p => p.evaluate(() => [...document.querySelectorAll('.hero-text>*,.hero-art,.reveal,.card,.job,section')].filter(e => {
+  const cs = getComputedStyle(e);
+  const idT = v => v === 'none' || /^0(px)?( 0(px)?)*$/.test(v);
+  const idS = v => v === 'none' || /^1( 1)*$/.test(v);
+  return parseFloat(cs.opacity) < 1 || !idT(cs.translate) || !idS(cs.scale);
+}).length);
+const settle = async p => { const h = await p.evaluate(() => document.body.scrollHeight);
+  for (let y = 0; y <= h + 300; y += 300) { await p.evaluate(y => scrollTo({ top: y, behavior: 'instant' }), y); await p.waitForTimeout(80); }
+  await p.waitForTimeout(500);
+  await p.evaluate(() => scrollTo({ top: 0, behavior: 'instant' })); await p.waitForTimeout(2000); };
+// Stats: DOM text must be the final value only (no doubled "44"), with no leftover counting state.
+const stats = p => p.evaluate(() => [...document.querySelectorAll('.stats dt')].map(d => d.textContent.trim() + (d.classList.contains('counting') || d.hasAttribute('data-count') ? '*' : '')));
 
 await test('reduced motion: static, final stats shown', { reducedMotion: 'reduce' }, async p => {
   const anims = await p.evaluate(() => document.getAnimations().length);
   assert(anims === 0, `${anims} running animations`);
   assert(await hiddenCount(p) === 0, 'content hidden');
   const s = await stats(p);
-  assert(JSON.stringify(s) === JSON.stringify([['4','4','true'],['10','10','true'],['3','3','true']]), 'stats ' + JSON.stringify(s));
+  assert(s.join() === '4,10,3', 'stats ' + JSON.stringify(s));
 });
 
 await test('no-JS: all content visible', { javaScriptEnabled: false }, async p => {
@@ -54,13 +65,15 @@ await test('no-JS: all content visible', { javaScriptEnabled: false }, async p =
 });
 
 await test('reveals: everything visible after scrolling', {}, async p => {
-  const h = await p.evaluate(() => document.body.scrollHeight);
-  for (let y = 0; y <= h; y += 300) { await p.evaluate(y => scrollTo(0, y), y); await p.waitForTimeout(80); }
-  await p.waitForTimeout(2000);
-  const n = await p.evaluate(() => [...document.querySelectorAll('.reveal')].filter(e => !e.classList.contains('in') || parseFloat(getComputedStyle(e).opacity) < 1).length);
-  assert(n === 0, `${n} reveals still hidden`);
+  await settle(p);
+  const n = await p.evaluate(() => [...document.querySelectorAll('.reveal')].filter(e => !e.classList.contains('in')).length);
+  assert(n === 0, `${n} reveals never triggered`);
+  const hidden = await hiddenCount(p);
+  assert(hidden === 0, `${hidden} elements still transparent, translated or scaled after settle`);
   const s = await stats(p);
-  assert(s.map(x => x[0]).join() === '4,10,3', 'count-up ended at ' + s.map(x => x[0]));
+  assert(s.join() === '4,10,3', 'stats after count-up ' + s.join());
+  const copy = await p.evaluate(() => document.querySelector('.stats').innerText.replace(/\s+/g, ' '));
+  assert(!/44|1010|33/.test(copy), 'copied stats text doubled: ' + copy);
 });
 
 async function liftOf(p, sel) {

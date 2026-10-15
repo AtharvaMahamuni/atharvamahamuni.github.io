@@ -133,4 +133,5 @@ a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
  .js .reveal.in{opacity:1;translate:none}
 }
 .stats dt{font-variant-numeric:tabular-nums}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.stats dt.counting{position:relative;color:transparent}
+.stats dt.counting::after{content:attr(data-count) / "";position:absolute;left:0;top:0;color:var(--ink)}
