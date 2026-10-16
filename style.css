@@ -92,7 +92,7 @@ a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .sats{position:absolute;inset:-26px;pointer-events:none}
 .sat{position:absolute;width:0;height:0;display:flex;align-items:center;justify-content:center}
 .sat>*{flex:none}
-.sat-a{top:11%;left:89%}.sat-b{top:72%;left:2%}.sat-c{top:100%;left:50%}.sat-d{top:14%;left:10%}
+.sat-a{top:14.6%;left:85.4%}.sat-b{top:67%;left:3%}.sat-c{top:100%;left:50%}.sat-d{top:14.6%;left:14.6%}.sat-e{top:0;left:50%}.sat-f{top:58.7%;left:99.2%}
 .links a{font-weight:700;font-size:15px;text-decoration:none;background:linear-gradient(var(--blue),var(--blue)) 0 100%/100% 2px no-repeat;position:relative}
 .links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
 .links a:hover::after,.links a:focus-visible::after{transform:scaleX(1)}
@@ -135,3 +135,8 @@ a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .stats dt{font-variant-numeric:tabular-nums}
 .stats dt.counting{position:relative;color:transparent}
 .stats dt.counting::after{content:attr(data-count) / "";position:absolute;left:0;top:0;color:var(--ink)}
+.focus{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:-12px 0 26px}
+.focus li{font-size:13px;font-weight:600;padding:4px 12px;border:1.5px solid var(--ink);border-radius:999px;background:#fff;transition:transform .2s ease,background-color .2s ease}
+.focus li:hover{transform:translateY(-2px);background:var(--yellow)}
+@media (max-width:860px){.sats .chip{font-size:12px;padding:4px 9px;box-shadow:3px 3px 0 var(--ink)}}
+@media (max-width:860px){.tri,.dia{display:none}}
