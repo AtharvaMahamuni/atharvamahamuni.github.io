@@ -587,7 +587,9 @@ h1 {
 }
 
 /* ==========================================================================
-   Interactive Android IFE Device Simulator & Clean Architecture Inspector
+   Android Architecture Reactor & OS Internals Motion Studio
+   Interactive Unidirectional Data Flow (MVI/Clean Arch), Silicon-to-UI Cutaway,
+   and Architecture Pattern Matrix.
    ========================================================================== */
 .simulator-section {
   max-width: 1240px;
@@ -601,10 +603,10 @@ h1 {
   border: var(--border);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 12px 32px -8px rgba(38, 37, 30, 0.08);
+  box-shadow: 0 16px 36px -12px rgba(38, 37, 30, 0.08);
 }
 
-/* Seat-Back IFE Bezel Frame Header */
+/* Control Header Bar */
 .device-header {
   display: flex;
   justify-content: space-between;
@@ -615,6 +617,8 @@ h1 {
   border-bottom: 1px solid #333128;
   font-family: var(--font-mono);
   font-size: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .device-status {
@@ -624,23 +628,30 @@ h1 {
 }
 
 .hud-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #19b68a;
-  box-shadow: 0 0 6px #19b68a;
+  box-shadow: 0 0 8px #19b68a;
+  animation: hudPulse 2s infinite ease-in-out;
+}
+
+@keyframes hudPulse {
+  0%, 100% { opacity: 0.8; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 12px #19b68a; }
 }
 
 .device-tabs {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .tab-btn {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: var(--radius-sm);
   background: transparent;
   color: #a09c92;
@@ -651,6 +662,7 @@ h1 {
 
 .tab-btn:hover {
   color: #ffffff;
+  border-color: #45433a;
 }
 
 .tab-btn.active {
@@ -659,11 +671,11 @@ h1 {
   border-color: var(--primary);
 }
 
-/* Interactive Device Screen Content */
+/* Interactive Screen Canvas Area */
 .device-screen {
   padding: clamp(20px, 3.5vw, 36px);
   background: var(--canvas-soft);
-  min-height: 280px;
+  min-height: 480px;
 }
 
 .panel-content {
@@ -673,227 +685,416 @@ h1 {
   display: block;
 }
 
-/* Tab 1: Live Seat-Back IFE Screen */
-.ife-view {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
-  align-items: center;
-}
-
-.telemetry-card {
-  background: var(--surface-card);
-  border: var(--border);
-  border-radius: var(--radius-md);
-  padding: 20px;
-}
-
-.flight-route {
+/* --------------------------------------------------------------------------
+   MODE 1: Clean Architecture & MVI Dataflow Reactor
+   -------------------------------------------------------------------------- */
+.reactor-intro {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
-.flight-route strong {
-  font-size: 18px;
+.reactor-desc {
+  font-size: 14px;
+  color: var(--body);
+  max-width: 48em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.reactor-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface-card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.action-trigger-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.action-trigger-btn.active-action {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+/* Pipeline Circuit Grid (Horizontal Desktop / Vertical Mobile) */
+.reactor-pipeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.flow-node {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.flow-node::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--node-color, var(--primary));
+  opacity: 0.6;
+}
+
+.flow-node.active-stage {
+  border-color: var(--node-color, var(--primary));
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px -6px rgba(245, 78, 0, 0.18),
+              0 0 0 1px var(--node-color, var(--primary));
+}
+
+.flow-node.active-stage::before {
+  opacity: 1;
+  height: 4px;
+}
+
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.node-step {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--node-color, var(--primary));
+  text-transform: uppercase;
+}
+
+.node-badge {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--canvas);
+  color: var(--muted);
+  border: var(--border);
+}
+
+.flow-node h4 {
+  margin: 0 0 4px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
   letter-spacing: -0.01em;
 }
 
-.flight-route span {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--primary);
-  background: var(--primary-tint);
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-}
-
-.telemetry-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.telemetry-grid div {
-  font-family: var(--font-mono);
-}
-.telemetry-grid dt {
+.node-sub {
   font-size: 11px;
   color: var(--muted);
-  text-transform: uppercase;
-  margin: 0;
-}
-.telemetry-grid dd {
-  margin: 2px 0 0;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ink);
+  line-height: 1.4;
+  margin: 0 0 10px;
 }
 
-/* Media Player HUD */
-.player-bar {
-  display: flex;
+.node-status {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  background: var(--canvas);
-  border-radius: var(--radius-md);
-  border: var(--border);
-}
-
-.play-toggle-btn {
-  background: var(--primary);
-  border: none;
-  color: #ffffff;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-size: 11px;
-}
-
-.track-info {
-  flex: 1;
-  font-size: 12px;
-}
-.track-info strong {
-  display: block;
-  color: var(--ink);
-}
-.track-info span {
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
   color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 10.5px;
 }
 
-/* Equalizer animation */
-.eq-bars {
-  display: flex;
-  gap: 3px;
-  align-items: flex-end;
-  height: 16px;
-}
-.eq-bar {
-  width: 3px;
-  background: var(--primary);
-  border-radius: 1px;
-  height: 8px;
-  animation: eqPulse 1.2s ease-in-out infinite alternate;
-}
-.eq-bar:nth-child(2) { animation-delay: 0.2s; height: 14px; }
-.eq-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
-.eq-bar:nth-child(4) { animation-delay: 0.1s; height: 16px; }
-
-@keyframes eqPulse {
-  0% { transform: scaleY(0.4); }
-  100% { transform: scaleY(1); }
+.node-pulse-indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
 }
 
-.ife-meta-card {
-  background: var(--surface-card);
-  border: var(--border);
+.flow-node.active-stage .node-status {
+  color: var(--node-color, var(--primary));
+}
+.flow-node.active-stage .node-pulse-indicator {
+  background: var(--node-color, var(--primary));
+  box-shadow: 0 0 6px var(--node-color, var(--primary));
+  animation: pulseDot 1s infinite alternate;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1.4); }
+}
+
+/* Connecting Arrow Track between nodes */
+.flow-connector {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--hairline-strong);
+  font-size: 14px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Colors for the 5 layers matching DESIGN.md */
+.node-1 { --node-color: var(--timeline-ui); }     /* UI / Compose (Peach) */
+.node-2 { --node-color: var(--timeline-vm); }     /* ViewModel / StateFlow (Blue) */
+.node-3 { --node-color: var(--timeline-domain); } /* Clean Domain / UseCase (Lavender) */
+.node-4 { --node-color: var(--timeline-data); }   /* Data / Room & Retrofit (Mint) */
+.node-5 { --node-color: var(--timeline-hal); }    /* HAL / Media3 / ExoPlayer (Gold) */
+
+/* Live State Terminal & Event Log */
+.reactor-terminal-card {
+  background: #181714;
   border-radius: var(--radius-md);
-  padding: 20px;
+  border: 1px solid #333128;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-.ife-meta-card h4 {
-  margin: 0 0 8px;
-  font-size: 15px;
-  color: var(--ink);
-}
-
-.ife-meta-card p {
-  margin: 0 0 12px;
-  font-size: 13.5px;
-  color: var(--body);
-  line-height: 1.5;
-}
-
-.ife-tech-chips {
+.terminal-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.ife-tech-chips span {
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #131210;
+  border-bottom: 1px solid #282721;
   font-family: var(--font-mono);
   font-size: 11px;
-  background: var(--canvas);
-  border: var(--border);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  color: var(--body-strong);
+  color: #cfcdc4;
 }
 
-/* Tab 2: Clean Architecture Stack View */
-.arch-view {
+.terminal-dots {
+  display: flex;
+  gap: 5px;
+}
+.terminal-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #333128;
+}
+.terminal-dots span:nth-child(1) { background: #dfa88f; }
+.terminal-dots span:nth-child(2) { background: #c08532; }
+.terminal-dots span:nth-child(3) { background: #19b68a; }
+
+.terminal-body {
+  padding: 16px 20px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.terminal-body pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: #dfa88f;
+}
+
+.terminal-body .code-comment { color: #807d72; }
+.terminal-body .code-intent { color: #9fbbe0; }
+.terminal-body .code-state { color: #9fc9a2; font-weight: 600; }
+.terminal-body .code-val { color: #c0a8dd; }
+
+/* --------------------------------------------------------------------------
+   MODE 2: Android OS & Phone Internals (Hardware to Compose Cutaway)
+   -------------------------------------------------------------------------- */
+.internals-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
-.arch-layers {
+.internals-stack {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
-.arch-layer-btn {
+.internals-layer-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
+  flex-direction: column;
+  padding: 14px 18px;
   background: var(--surface-card);
-  border: var(--border);
+  border: 1px solid var(--hairline);
   border-radius: var(--radius-md);
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: left;
-  transition: all 0.2s ease;
 }
 
-.arch-layer-btn:hover {
+.internals-layer-card:hover {
   border-color: var(--hairline-strong);
   transform: translateX(4px);
 }
 
-.arch-layer-btn.active {
-  border-color: var(--layer-accent, var(--primary));
+.internals-layer-card.active-layer {
+  border-color: var(--primary);
   border-left-width: 4px;
   background: var(--canvas);
 }
 
-.arch-layer-btn strong {
-  display: block;
-  font-size: 13.5px;
+.internals-layer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.internals-layer-header strong {
+  font-size: 14px;
   color: var(--ink);
 }
 
-.arch-layer-btn span {
+.internals-layer-header span {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--muted);
+  color: var(--primary);
 }
 
-.arch-code-box {
-  background: #1c1b17;
-  color: #cfcdc4;
-  border-radius: var(--radius-md);
-  border: 1px solid #333128;
-  padding: 16px 20px;
-  overflow-x: auto;
-}
-
-.arch-code-box pre {
+.internals-layer-card p {
   margin: 0;
-  font-family: var(--font-mono);
   font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.internals-detail-card {
+  background: var(--surface-card);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.internals-detail-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.internals-detail-card .internals-role-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--primary);
+  background: var(--primary-tint);
+  border: 1px solid rgba(245, 78, 0, 0.2);
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
+}
+
+.internals-spec-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.internals-spec-item {
+  border-left: 2px solid var(--hairline-strong);
+  padding-left: 12px;
+}
+
+.internals-spec-item strong {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+
+.internals-spec-item p {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: var(--body);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   MODE 3: Architecture Pattern Lab (MVVM vs MVI vs Clean Architecture)
+   -------------------------------------------------------------------------- */
+.patterns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.pattern-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-card);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pattern-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--hairline-strong);
+}
+
+.pattern-card h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.pattern-tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.pattern-card p {
+  font-size: 13.5px;
+  color: var(--body);
   line-height: 1.55;
+  margin: 0 0 16px;
+}
+
+.pattern-flow-diagram {
+  background: var(--canvas);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-top: auto;
 }
 
 /* ==========================================================================
@@ -1419,6 +1620,19 @@ a:focus-visible, button:focus-visible {
   .d-chip-2 { right: -12px; }
   .d-chip-3 { left: -12px; }
   .d-chip-4 { right: 0; }
+  .reactor-pipeline {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .flow-connector {
+    display: none;
+  }
+  .internals-grid {
+    grid-template-columns: 1fr;
+  }
+  .patterns-grid {
+    grid-template-columns: 1fr;
+  }
   .ife-view {
     grid-template-columns: 1fr;
   }

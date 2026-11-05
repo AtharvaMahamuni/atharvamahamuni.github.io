@@ -120,11 +120,28 @@ await test('interactive device simulator switches tabs and displays Clean Arch c
   assert(codeText.includes('SeatBackScreen'), 'Clean Arch code not displayed');
 
   // Test layer switcher click
-  const domainBtn = p.locator('.arch-layer-btn[data-layer="domain"]');
+  const domainBtn = p.locator('.arch-layer-btn[data-layer="domain"]').first();
   await domainBtn.click();
   await p.waitForTimeout(200);
   const updatedCode = await p.locator('#arch-code-display').textContent();
   assert(updatedCode.includes('GetFlightTelemetryUseCase'), 'domain layer code not displayed');
+
+  // Test MVI reactor action trigger
+  const triggerAuth = p.locator('#trigger-auth');
+  await triggerAuth.click();
+  await p.waitForTimeout(200);
+  const authCode = await p.locator('#arch-code-display').textContent();
+  assert(authCode.includes('AuthenticateBiometric') || authCode.includes('Biometric'), 'biometric intent code not triggered');
+
+  // Test OS Internals tab
+  const tabInternals = p.locator('#tab-internals');
+  await tabInternals.click();
+  await p.waitForTimeout(200);
+  const nativeCard = p.locator('.internals-layer-card[data-os-layer="native"]');
+  await nativeCard.click();
+  await p.waitForTimeout(200);
+  const internalsTitle = await p.locator('#internals-title').textContent();
+  assert(internalsTitle.includes('Native C++'), 'OS internals native layer not active');
 });
 
 await test('X handle @athmatwt links are present across the page', {}, async p => {

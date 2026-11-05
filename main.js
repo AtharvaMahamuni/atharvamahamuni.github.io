@@ -81,7 +81,7 @@
     heroArt.addEventListener('pointerleave', onPointerLeave, { passive: true });
   }
 
-  // 3. Interactive Android IFE Device Simulator & Tabs
+  // 3. Interactive Android Architecture Studio & MVI Dataflow Reactor
   var tabButtons = document.querySelectorAll('.tab-btn');
   var panels = document.querySelectorAll('.panel-content');
 
@@ -102,21 +102,217 @@
     });
   });
 
-  // Play/Pause button in IFE view
-  var playBtn = document.getElementById('play-btn');
-  var eqBars = document.querySelectorAll('.eq-bar');
-  if (playBtn) {
-    var isPlaying = true;
-    playBtn.addEventListener('click', function () {
-      isPlaying = !isPlaying;
-      playBtn.textContent = isPlaying ? '▶' : '❚❚';
-      eqBars.forEach(function (bar) {
-        bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+  // MVI Dataflow Reactor State Machine
+  var ACTION_FLOWS = {
+    ife: [
+      {
+        node: 'node-1',
+        status: 'DISPATCHING',
+        badge: 'MVI Intent Emitted',
+        code: `// 01. Jetpack Compose UI Layer
+val intent = UiIntent.StartPlayback(
+    aircraftId = 702,
+    mediaId = "4K_HEVC_STREAM",
+    quality = Resolution.P2160
+)
+viewModel.handleIntent(intent)`
+      },
+      {
+        node: 'node-2',
+        status: 'REDUCING',
+        badge: 'ViewModel Processing',
+        code: `// 02. StateFlow & Reducer Dispatch
+private fun reduce(intent: UiIntent.StartPlayback) = viewModelScope.launch {
+    _uiState.update { it.copy(playbackState = PlaybackState.Buffering) }
+    val uri = getStreamUriUseCase(intent.mediaId)
+    // Pipeline proceeds to Domain Layer...
+}`
+      },
+      {
+        node: 'node-3',
+        status: 'VALIDATING',
+        badge: 'Clean Domain Logic',
+        code: `// 03. Pure Kotlin UseCase Execution
+class GetStreamUriUseCase @Inject constructor(
+    private val flightRepo: FlightRepository
+) {
+    suspend operator fun invoke(mediaId: String): Result<MediaSource> {
+        return flightRepo.resolveMediaSource(mediaId) // No Android SDK dependency
+    }
+}`
+      },
+      {
+        node: 'node-4',
+        status: 'READING CACHE',
+        badge: 'Offline SQLite Query',
+        code: `// 04. Data Layer & Room Caching
+@Query("SELECT local_uri FROM seat_back_cache WHERE media_id = :id")
+suspend fun getCachedUri(id: String): String? = roomDatabase.withTransaction {
+    // 0ms network latency; local seat-back flash storage hit
+    telemetryDao.queryMedia(id)
+}`
+      },
+      {
+        node: 'node-5',
+        status: 'HARDWARE DECODE',
+        badge: 'Hardware Surface 60fps',
+        code: `// 05. Android HAL & Media3 Output
+val player = ExoPlayer.Builder(context).build().apply {
+    setVideoSurface(surfaceView.holder.surface)
+    prepare()
+    play()
+}
+// Final Immutable State Emitted back to Compose UI:
+_uiState.update { UiState.Playing(position = 0L, buffering = false) }`
+      }
+    ],
+    auth: [
+      {
+        node: 'node-1',
+        status: 'TOUCH CAPTURE',
+        badge: 'Biometric Intent',
+        code: `// 01. User Triggers Biometric Login
+val intent = UiIntent.AuthenticateBiometric(cipher = CipherMode.AES256_GCM)
+viewModel.handleIntent(intent)`
+      },
+      {
+        node: 'node-2',
+        status: 'CHALLENGE GEN',
+        badge: 'StateFlow Challenging',
+        code: `// 02. ViewModel Generates Security Challenge
+_uiState.update { it.copy(authStatus = AuthStatus.Challenging) }
+val cryptoObject = biometricManager.createCryptoObject()`
+      },
+      {
+        node: 'node-3',
+        status: 'RULE CHECK',
+        badge: 'Domain Security Rules',
+        code: `// 03. Domain Business Validation
+class ValidateBiometricTokenUseCase @Inject constructor() {
+    operator fun invoke(challenge: ByteArray): Boolean =
+        challenge.isNotEmpty() && !isDeviceCompromised()
+}`
+      },
+      {
+        node: 'node-4',
+        status: 'KEYSTORE READ',
+        badge: 'Android Keystore',
+        code: `// 04. Secure Hardware Storage
+val keyStore = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
+val secretKey = keyStore.getKey("NSE_PRIVATE_KEY", null) as SecretKey`
+      },
+      {
+        node: 'node-5',
+        status: 'VERIFIED',
+        badge: 'Token Emitted',
+        code: `// 05. Hardware Enclave Authentication Result
+BiometricPrompt.AuthenticationCallback().onAuthenticationSucceeded {
+    _uiState.update { UiState.Authenticated(authToken = "jwt_valid_24h") }
+}`
+      }
+    ],
+    sync: [
+      {
+        node: 'node-1',
+        status: 'SYNC REQUEST',
+        badge: 'User Refresh',
+        code: `// 01. UI Request: Synchronize Offline Fleet Data
+viewModel.handleIntent(UiIntent.SyncOfflineDatabase(strategy = Strategy.CacheFirst))`
+      },
+      {
+        node: 'node-2',
+        status: 'DISPATCH WORK',
+        badge: 'WorkManager Bound',
+        code: `// 02. ViewModel Schedules Background Coroutines
+viewModelScope.launch(Dispatchers.IO) {
+    _uiState.update { it.copy(isSyncing = true) }
+    syncRepository.performDeltaSync()
+}`
+      },
+      {
+        node: 'node-3',
+        status: 'RESOLVE MERGE',
+        badge: 'Clean Conflict Policy',
+        code: `// 03. Conflict Resolution Business Logic
+fun resolveConflicts(serverList: List<Telemetry>, localList: List<Telemetry>) =
+    serverList.union(localList).distinctBy { it.id }`
+      },
+      {
+        node: 'node-4',
+        status: 'SQLITE UPSERT',
+        badge: 'Room DB Transaction',
+        code: `// 04. Batch Upsert to Local SQLite
+@Transaction
+suspend fun upsertAll(records: List<TelemetryEntity>) {
+    records.forEach { dao.upsert(it) }
+}`
+      },
+      {
+        node: 'node-5',
+        status: 'SYNC COMPLETE',
+        badge: '1420 Entries Updated',
+        code: `// 05. Immutable SyncState Rendered in UI
+_uiState.update { UiState.Idle(lastSyncTime = System.currentTimeMillis()) }`
+      }
+    ]
+  };
+
+  var actionButtons = document.querySelectorAll('.action-trigger-btn');
+  var codeDisplay = document.getElementById('arch-code-display');
+  var terminalStatus = document.getElementById('terminal-status-badge');
+  var flowNodes = document.querySelectorAll('.flow-node');
+  var isReactorRunning = false;
+  var reactorTimer = null;
+
+  function runReactorFlow(actionKey) {
+    if (isReactorRunning) clearTimeout(reactorTimer);
+    isReactorRunning = true;
+
+    var steps = ACTION_FLOWS[actionKey] || ACTION_FLOWS.ife;
+    var stepIndex = 0;
+
+    function executeStep() {
+      if (stepIndex >= steps.length) {
+        isReactorRunning = false;
+        if (terminalStatus) {
+          terminalStatus.textContent = 'MVI Event Pipeline · Completed ✓ (UiState Emitted)';
+        }
+        return;
+      }
+
+      var current = steps[stepIndex];
+
+      // Highlight active node
+      flowNodes.forEach(function (n) {
+        var isActive = (n.id === current.node);
+        n.classList.toggle('active-stage', isActive);
+        var statusTxt = n.querySelector('.status-txt');
+        if (statusTxt) {
+          statusTxt.textContent = isActive ? current.status : (parseInt(n.id.replace('node-', ''), 10) < stepIndex + 1 ? 'DONE ✓' : 'STANDBY');
+        }
       });
-    });
+
+      // Update terminal & code
+      if (codeDisplay) codeDisplay.textContent = current.code;
+      if (terminalStatus) terminalStatus.textContent = 'Stage 0' + (stepIndex + 1) + ' · ' + current.badge;
+
+      stepIndex++;
+      reactorTimer = setTimeout(executeStep, reduce ? 100 : 700);
+    }
+
+    executeStep();
   }
 
-  // Clean Architecture Layer Inspector (Code Switcher)
+  actionButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      actionButtons.forEach(function (b) { b.classList.remove('active-action'); });
+      btn.classList.add('active-action');
+      var actionKey = btn.getAttribute('data-action');
+      runReactorFlow(actionKey);
+    });
+  });
+
+  // Layer Inspector Buttons (UI, VM, Domain, Data, HAL)
   var CODE_SNIPPETS = {
     compose: `// Jetpack Compose Seat-Back UI Layer
 @Composable
@@ -174,8 +370,6 @@ val exoPlayer = ExoPlayer.Builder(context)
   };
 
   var archLayerButtons = document.querySelectorAll('.arch-layer-btn');
-  var codeDisplay = document.getElementById('arch-code-display');
-
   archLayerButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var layerKey = btn.getAttribute('data-layer');
@@ -184,6 +378,82 @@ val exoPlayer = ExoPlayer.Builder(context)
 
       if (codeDisplay && CODE_SNIPPETS[layerKey]) {
         codeDisplay.textContent = CODE_SNIPPETS[layerKey];
+      }
+    });
+  });
+
+  // OS & Phone Internals Layer Switcher
+  var OS_DETAILS = {
+    ui: {
+      role: 'Panasonic Avionics · Seat-Back Display',
+      title: '05 · Jetpack Compose & UI Toolkit',
+      desc: 'Fine-grained recomposition boundaries guarantee seat-back displays run at a stable 60/120fps with zero frame drops during passenger interaction or turbulence telemetry updates.',
+      specs: [
+        { name: 'Smart Recomposition', desc: 'Immutable data classes prevent unneeded layout calculations across passenger screens.' },
+        { name: 'Baseline Profiles', desc: 'Pre-compiled Ahead-Of-Time code delivers 320ms cold starts on aircraft reboot cycles.' }
+      ]
+    },
+    framework: {
+      role: 'National Stock Exchange · Performance Testing App',
+      title: '04 · Android Framework & ART Runtime',
+      desc: 'Utilizes Google Android Runtime (ART) with generational garbage collection and optimized Coroutine dispatchers (Dispatchers.IO) to run thousands of simulated market load tests.',
+      specs: [
+        { name: 'Zygote Pre-warming', desc: 'Core system classes preloaded into memory before app fork.' },
+        { name: 'Coroutines Flow', desc: 'Cooperative multi-tasking without thread starvation during heavy JMeter API polling.' }
+      ]
+    },
+    native: {
+      role: 'Panasonic Avionics · Fleet Entertainment',
+      title: '03 · Native C++ & Media HAL',
+      desc: 'Direct interaction with Android Hardware Abstraction Layer (HAL) through Media3 / ExoPlayer C++ decoders, SurfaceFlinger compositor, and hardware Widevine L1 DRM decryption.',
+      specs: [
+        { name: 'SurfaceFlinger', desc: 'Zero-copy hardware buffer passing to the seat-back panel.' },
+        { name: 'Widevine L1 DRM', desc: 'Hardware-protected media pipeline for premium Hollywood in-flight streaming.' }
+      ]
+    },
+    kernel: {
+      role: 'Embedded Android & System Security',
+      title: '02 · Linux Kernel & Binder IPC',
+      desc: 'The backbone of Android multitasking. High-speed inter-process communication (IPC) through Binder driver channels, low-memory killer (LMK), and CPU power governor tuning.',
+      specs: [
+        { name: 'Binder IPC Bus', desc: 'Sub-millisecond remote procedure calls between SystemServer and app processes.' },
+        { name: 'Ashmem Shared Memory', desc: 'Zero-copy frame sharing between media decoding services and UI.' }
+      ]
+    },
+    soc: {
+      role: 'Panasonic Avionics & Embedded Hardware',
+      title: '01 · SoC Silicon & Hardware Engines',
+      desc: 'Octa-core ARM 64-bit architecture with dedicated Adreno GPU and specialized Hardware Video Processing Units (VPU) optimized for continuous 4K HEVC playback.',
+      specs: [
+        { name: 'Hardware VPU', desc: 'Consumes less than 4W power while decoding dual 4K video feeds.' },
+        { name: 'Bluetooth LE Radio', desc: 'Low-latency wireless passenger headphone pairing.' }
+      ]
+    }
+  };
+
+  var osLayerCards = document.querySelectorAll('.internals-layer-card');
+  var internalsTitle = document.getElementById('internals-title');
+  var internalsRoleTag = document.getElementById('internals-role-tag');
+  var internalsDesc = document.getElementById('internals-desc');
+  var internalsSpecs = document.getElementById('internals-specs');
+
+  osLayerCards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      var layerKey = card.getAttribute('data-os-layer');
+      osLayerCards.forEach(function (c) { c.classList.remove('active-layer'); });
+      card.classList.add('active-layer');
+
+      var data = OS_DETAILS[layerKey];
+      if (!data) return;
+
+      if (internalsTitle) internalsTitle.textContent = data.title;
+      if (internalsRoleTag) internalsRoleTag.textContent = data.role;
+      if (internalsDesc) internalsDesc.textContent = data.desc;
+
+      if (internalsSpecs) {
+        internalsSpecs.innerHTML = data.specs.map(function (s) {
+          return '<div class="internals-spec-item"><strong>' + s.name + '</strong><p>' + s.desc + '</p></div>';
+        }).join('');
       }
     });
   });
