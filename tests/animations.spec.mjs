@@ -100,6 +100,31 @@ await test('Education nav item becomes active', {}, async p => {
   assert(active.length === 1 && active[0] === '#education', 'active ' + JSON.stringify(active));
 });
 
+await test('3D IFE teardown rig initializes and toggles mode', {}, async p => {
+  const canvasExists = await p.locator('#ife-canvas').count();
+  assert(canvasExists === 1, 'ife-canvas missing');
+  const btn = p.locator('#teardown-toggle-btn');
+  assert(await btn.count() === 1, 'teardown toggle button missing');
+  const initialAria = await btn.getAttribute('aria-pressed');
+  assert(initialAria === 'false', 'initial aria-pressed not false');
+  await btn.click();
+  await p.waitForTimeout(200);
+  const clickedAria = await btn.getAttribute('aria-pressed');
+  assert(clickedAria === 'true', 'clicked aria-pressed not true');
+  const explodeVal = await p.evaluate(() => window.__ifeRig ? window.__ifeRig.state.targetExplode : null);
+  assert(explodeVal === 1, `targetExplode should be 1, got ${explodeVal}`);
+});
+
+await test('JSON-LD schema metadata is present and valid', {}, async p => {
+  const jsonLd = await p.evaluate(() => {
+    const el = document.querySelector('script[type="application/ld+json"]');
+    return el ? JSON.parse(el.textContent) : null;
+  });
+  assert(jsonLd && jsonLd['@graph'], 'missing @graph in JSON-LD');
+  const person = jsonLd['@graph'].find(item => item['@type'] === 'Person');
+  assert(person && person.name === 'Atharva Mahamuni', 'person metadata invalid');
+});
+
 await browser.close(); server.close();
 console.log(results.join('\n'));
 console.log(failed ? `\n${failed} failed` : `\nall ${results.length} passed`);

@@ -1,0 +1,16 @@
+# AI Crawler & Agent Discovery Policy
+
+Site: https://atharvamahamuni.github.io/
+Author: Atharva Mahamuni (@athmatwt)
+License: Content is freely indexed for search engines, LLMs, and conversational AI agents.
+
+Allowed:
+- Full crawl of portfolio pages, project documentation, and machine-readable discovery files.
+- Summarization of background, skills, and work history.
+
+Machine-readable files:
+- /llms.txt: Condensed LLM overview.
+- /llms-full.txt: Full technical profile and architectural deep dives.
+- /identity.json: Schema.org structured data.
+- /brand.txt: Verification data.
+- /faq-ai.txt: Frequently asked questions for recruiters and engineers.

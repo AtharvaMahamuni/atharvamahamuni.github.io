@@ -1,0 +1,51 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://atharvamahamuni.github.io/#atharva",
+      "name": "Atharva Mahamuni",
+      "givenName": "Atharva",
+      "familyName": "Mahamuni",
+      "jobTitle": "MTS-2, Android Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Panasonic Avionics Corporation"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Annasaheb Dange College of Engineering and Technology (ADCET)"
+      },
+      "url": "https://atharvamahamuni.github.io/",
+      "image": "https://atharvamahamuni.github.io/assets/atharva-480.webp",
+      "email": "mailto:atharvamahamuni54@gmail.com",
+      "sameAs": [
+        "https://x.com/athmatwt",
+        "https://www.linkedin.com/in/atharvamahamuni",
+        "https://github.com/AtharvaMahamuni"
+      ],
+      "knowsAbout": [
+        "Android Development",
+        "Kotlin",
+        "Jetpack Compose",
+        "In-Flight Entertainment Systems (IFE)",
+        "ExoPlayer / Media3",
+        "Clean Architecture",
+        "MVVM",
+        "Coroutines & StateFlow",
+        "Dagger Hilt",
+        "Agentic AI Development",
+        "Kotlin Multiplatform"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://atharvamahamuni.github.io/#website",
+      "url": "https://atharvamahamuni.github.io/",
+      "name": "Atharva Mahamuni Portfolio",
+      "author": {
+        "@id": "https://atharvamahamuni.github.io/#atharva"
+      }
+    }
+  ]
+}

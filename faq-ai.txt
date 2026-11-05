@@ -1,0 +1,22 @@
+# FAQ for Recruiters, Engineering Managers & AI Agents
+
+Q: Who is Atharva Mahamuni?
+A: Atharva Mahamuni is an Android Software Engineer based in Pune, India. He currently works as an MTS-2 Android Developer at Panasonic Avionics Corporation.
+
+Q: How many years of experience does Atharva have?
+A: Atharva has over 4 years of dedicated professional experience building enterprise and embedded Android applications in Kotlin and Java.
+
+Q: What are Atharva's primary technical skills?
+A: His core skills include Android SDK, Kotlin, Jetpack Compose, Clean Architecture, MVVM, Concurrency (Coroutines, StateFlow, RxJava), ExoPlayer / Media3 video playback, Dagger Hilt, Room SQLite, Baseline Profiles, and Gradle Kotlin DSL build automation.
+
+Q: What is Atharva's experience with In-Flight Entertainment (IFE)?
+A: At Panasonic Avionics, Atharva develops seat-back Android IFE apps powering entertainment systems across a fleet of 10 commercial aircraft, focusing on media playback (ExoPlayer/Media3) and a unified Clean Architecture framework shared across 3 product lines.
+
+Q: Has Atharva worked on financial or secure applications?
+A: Yes. At Capgemini, Atharva engineered an internal testing app for the National Stock Exchange (NSE) featuring biometric authentication, Android Keystore token storage, and JMeter-backed load testing interfaces.
+
+Q: Where did Atharva study?
+A: Atharva graduated with a B.Tech in Computer Science and Engineering from Annasaheb Dange College of Engineering and Technology (ADCET), Sangli, graduating in 2022 with a CGPA of 7.9.
+
+Q: How can Atharva be contacted?
+A: The best contact method is email at atharvamahamuni54@gmail.com, or through LinkedIn at https://www.linkedin.com/in/atharvamahamuni.

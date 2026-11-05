@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Standard discovery endpoints for AI agents and LLM crawlers
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /ai.txt
+Allow: /ai.json
+Allow: /identity.json
+Allow: /brand.txt
+Allow: /faq-ai.txt

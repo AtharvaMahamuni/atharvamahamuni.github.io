@@ -1,0 +1,75 @@
+# Atharva Mahamuni — Comprehensive Technical Biography & Architecture Manual
+
+Author: Atharva Mahamuni
+Title: MTS-2, Android Developer
+Company: Panasonic Avionics Corporation
+Location: Pune, Maharashtra, India
+Handle: @athmatwt
+Website: https://atharvamahamuni.github.io/
+Email: atharvamahamuni54@gmail.com
+LinkedIn: https://www.linkedin.com/in/atharvamahamuni
+GitHub: https://github.com/AtharvaMahamuni
+
+---
+
+## 1. Professional Background
+
+Atharva Mahamuni is an Android software engineer specializing in enterprise-grade, high-reliability mobile and embedded systems. With over four years of dedicated Android engineering experience, Atharva designs and delivers scalable Android software from low-level media playback and hardware abstraction up to fluid, accessible Jetpack Compose user interfaces.
+
+His primary domain focus spans:
+1. **In-Flight Entertainment (IFE) Systems**: Seat-back touchscreens, Media3/ExoPlayer video pipelines, hardware media decoders, airline fleet deployments.
+2. **Clean Architecture in Android**: Unidirectional data flow, pure Kotlin domain layers, dependency inversion via Dagger Hilt, and repository caching patterns.
+3. **Financial & High-Security Applications**: Biometric authentication, hardware-backed Android Keystore cryptography, Baseline Profiles for sub-second startup times, performance testing infrastructure for the National Stock Exchange of India.
+4. **Agentic Coding & Web Tooling**: Creator of ToyTools (https://toytoolsapp.com) and Online Slug Generator (https://onlinesluggenerator.com).
+
+---
+
+## 2. Detailed Work History
+
+### Panasonic Avionics Corporation (Pune, India)
+- **Roles**:
+  - Member of Technical Staff 2 (MTS-2), Android Developer (Jul 2026 – Present)
+  - Member of Technical Staff 1 (MTS-1), Android Developer (Jan 2025 – Jul 2026)
+- **Engineering Contributions**:
+  - Led the development of seat-back Android in-flight entertainment software operating across an active commercial fleet of 10 premium aircraft.
+  - Architected media playback systems utilizing Google AndroidX Media3 / ExoPlayer, managing video decoding, adaptive streaming, DRM licensing, and audio routing.
+  - Developed a unified, multi-module Android framework adhering to Clean Architecture and SOLID principles, shared across 3 distinct Panasonic Avionics IFE product lines.
+  - Managed build engineering and release automation with Gradle Kotlin DSL, Version Catalogs, build flavors, ProGuard/R8 shrinking, Jenkins, and GitLab CI pipelines.
+
+### Capgemini (Pune, India) — Client: National Stock Exchange (NSE)
+- **Role**: Associate Consultant, Android Developer (Oct 2022 – Jan 2025)
+- **Engineering Contributions**:
+  - Built a secure Android client used by the National Stock Exchange to orchestrate large-scale load tests against trading and market data backend services via Apache JMeter wrappers.
+  - Hardened application security using biometric authentication (BiometricPrompt) and hardware-backed key generation inside the Android Keystore.
+  - Dramatically lowered cold start latency and frame jank by generating Jetpack Macrobenchmark Baseline Profiles and deferring dependency injection graph initialization.
+  - Migrated legacy Java codebase to modern Kotlin, Coroutines, and MVVM architecture, increasing automated unit and UI test coverage (JUnit, Mockito, Espresso).
+
+---
+
+## 3. Technology Stack & Proficiency
+
+- **Programming Languages**: Kotlin (expert), Java (proficient), TypeScript (proficient), SQL.
+- **Android Technologies**: Jetpack Compose, ViewModel, StateFlow, Coroutines, Room DB, WorkManager, ExoPlayer / Media3, DataStore, Dagger Hilt, Navigation Component, Baseline Profiles.
+- **Architecture**: Clean Architecture, Model-View-ViewModel (MVVM), Unidirectional Data Flow (UDF), Repository Pattern, Multi-Module Gradle projects.
+- **Testing & Quality**: JUnit 4/5, Mockito, MockK, Robolectric, Espresso, Compose UI Testing, LeakCanary, Firebase Crashlytics.
+- **Build & CI/CD**: Gradle Kotlin DSL, Version Catalogs (`libs.versions.toml`), ProGuard/R8, Jenkins, GitLab CI, GitHub Actions, Fastlane.
+
+---
+
+## 4. Open Source & Engineering Projects
+
+1. **ToyTools** (https://toytoolsapp.com):
+   - High-performance, data-driven web utilities platform built with Astro, TypeScript, and modern SEO engines.
+   - GitHub: https://github.com/AtharvaMahamuni/toytools
+
+2. **ToyTools for Android**:
+   - Clean Architecture utility tools Android client built entirely in Kotlin and Jetpack Compose.
+   - GitHub: https://github.com/AtharvaMahamuni/toyTools-android
+
+3. **IoT Robot Controller**:
+   - Hardware robotics controller app communicating over Bluetooth Low Energy (BLE) with NodeMCU microcontrollers.
+   - GitHub: https://github.com/AtharvaMahamuni/robot-controller-app
+
+4. **Spotify Full-Stack App**:
+   - Full-stack music streaming simulation with decoupled web frontend, Node.js REST API backend, and MySQL database.
+   - GitHub: https://github.com/AtharvaMahamuni/Spotify_Full_stack_app

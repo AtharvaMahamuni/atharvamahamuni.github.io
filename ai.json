@@ -1,0 +1,24 @@
+{
+  "name": "Atharva Mahamuni Portfolio",
+  "url": "https://atharvamahamuni.github.io/",
+  "author": "Atharva Mahamuni",
+  "handle": "@athmatwt",
+  "role": "MTS-2, Android Developer",
+  "company": "Panasonic Avionics Corporation",
+  "location": "Pune, India",
+  "endpoints": {
+    "llms": "https://atharvamahamuni.github.io/llms.txt",
+    "llms_full": "https://atharvamahamuni.github.io/llms-full.txt",
+    "identity": "https://atharvamahamuni.github.io/identity.json",
+    "brand": "https://atharvamahamuni.github.io/brand.txt",
+    "faq": "https://atharvamahamuni.github.io/faq-ai.txt"
+  },
+  "capabilities": [
+    "Android Development",
+    "In-Flight Entertainment (IFE)",
+    "Clean Architecture",
+    "Jetpack Compose",
+    "ExoPlayer / Media3",
+    "Kotlin Multiplatform"
+  ]
+}

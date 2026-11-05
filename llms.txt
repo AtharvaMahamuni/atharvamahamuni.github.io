@@ -1,0 +1,36 @@
+# Atharva Mahamuni · Android Developer & IFE Systems
+
+> Atharva Mahamuni is an MTS-2 Android Developer at Panasonic Avionics in Pune, India, with 4+ years of professional experience specializing in Kotlin, Jetpack Compose, Clean Architecture, and embedded seat-back In-Flight Entertainment (IFE) systems.
+
+Author: Atharva Mahamuni (https://x.com/athmatwt)
+Portfolio: https://atharvamahamuni.github.io/
+Contact: atharvamahamuni54@gmail.com
+GitHub: https://github.com/AtharvaMahamuni
+LinkedIn: https://www.linkedin.com/in/atharvamahamuni
+
+## Core Expertise
+- **Android & IFE**: Android SDK, Jetpack Compose, ViewModel, Navigation, ExoPlayer / Media3 video playback, seat-back display systems, Bluetooth LE.
+- **Architecture**: Clean Architecture, MVVM, Repository Pattern, SOLID principles, Modular multi-module Gradle setups.
+- **Concurrency & Data**: Kotlin Coroutines, StateFlow / SharedFlow, RxJava, Retrofit, Room SQLite, Dagger Hilt.
+- **Build & CI/CD**: Gradle Kotlin DSL, Version Catalogs, Fastlane, Jenkins, GitLab CI, GitHub Actions.
+
+## Professional Experience
+- **Panasonic Avionics Corporation** (Pune, India):
+  - MTS-2, Android Developer (Jul 2026 – Present)
+  - MTS-1, Android Developer (Jan 2025 – Jul 2026)
+  - Engineered seat-back IFE apps across a fleet of 10 premium aircraft.
+  - Architected a shared Clean Architecture Android framework across 3 product lines.
+- **Capgemini** (Pune, India) · Client: **National Stock Exchange**:
+  - Associate Consultant, Android Developer (Oct 2022 – Jan 2025)
+  - Built internal performance and load-testing Android applications for NSE.
+  - Biometric authentication, Android Keystore security, Baseline Profiles.
+
+## Key Projects
+- **ToyTools** (https://toytoolsapp.com): Fast, minimalist data-driven utility tools platform built with TypeScript and Astro.
+- **ToyTools for Android** (https://github.com/AtharvaMahamuni/toyTools-android): Clean Architecture Android utilities in Kotlin and Jetpack Compose.
+- **IoT Robot Controller** (https://github.com/AtharvaMahamuni/robot-controller-app): Bluetooth LE hardware controller.
+- **Spotify Full-Stack App** (https://github.com/AtharvaMahamuni/Spotify_Full_stack_app): Complete music streaming architecture.
+
+## Education
+- B.Tech in Computer Science and Engineering (2018 – 2022, CGPA 7.9)
+  Annasaheb Dange College of Engineering and Technology (ADCET), Sangli.

@@ -3,21 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atharva Mahamuni · Android Developer</title>
-<meta name="description" content="Atharva Mahamuni, Android developer in Pune with 4 years of Kotlin and Jetpack Compose experience. MTS-2 at Panasonic Avionics.">
-<meta property="og:title" content="Atharva Mahamuni · Android Developer">
-<meta property="og:description" content="Android developer building with Kotlin, Jetpack Compose, MVVM and Clean Architecture.">
+<title>Atharva Mahamuni · Android Developer &amp; IFE Systems</title>
+<meta name="description" content="Atharva Mahamuni, Android developer in Pune with 4 years of Kotlin, Jetpack Compose, and Clean Architecture experience. MTS-2 at Panasonic Avionics building in-flight entertainment systems.">
+<meta property="og:title" content="Atharva Mahamuni · Android Developer &amp; IFE Systems">
+<meta property="og:description" content="Android developer building in-flight entertainment apps and Clean Architecture systems in Kotlin &amp; Jetpack Compose.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atharvamahamuni.github.io/">
 <meta property="og:image" content="https://atharvamahamuni.github.io/assets/atharva-480.webp">
-<meta name="theme-color" content="#F6F3EA">
+<meta name="theme-color" content="#f7f7f4">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/scrollcraft.css">
 <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__anim)document.documentElement.classList.remove("js")},2500)</script>
 <script src="main.js" defer></script>
+<script src="assets/ife-teardown.js" defer></script>
+<script src="assets/scrollcraft.js" defer></script>
+
+<!-- Structured Data: JSON-LD Graph for Person and ProfilePage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://atharvamahamuni.github.io/#atharva",
+      "name": "Atharva Mahamuni",
+      "jobTitle": "MTS-2, Android Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Panasonic Avionics Corporation"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Annasaheb Dange College of Engineering and Technology (ADCET)"
+      },
+      "url": "https://atharvamahamuni.github.io/",
+      "image": "https://atharvamahamuni.github.io/assets/atharva-480.webp",
+      "sameAs": [
+        "https://x.com/athmatwt",
+        "https://www.linkedin.com/in/atharvamahamuni",
+        "https://github.com/AtharvaMahamuni"
+      ],
+      "knowsAbout": [
+        "Android Development",
+        "Kotlin",
+        "Jetpack Compose",
+        "In-Flight Entertainment Systems",
+        "Clean Architecture",
+        "ExoPlayer / Media3",
+        "Coroutines & StateFlow",
+        "MVVM",
+        "Dagger Hilt"
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://atharvamahamuni.github.io/#webpage",
+      "url": "https://atharvamahamuni.github.io/",
+      "name": "Atharva Mahamuni · Portfolio & Architecture Showcase",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://atharvamahamuni.github.io/#website",
+        "url": "https://atharvamahamuni.github.io/",
+        "name": "Atharva Mahamuni"
+      },
+      "mainEntity": { "@id": "https://atharvamahamuni.github.io/#atharva" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+
 <header class="nav">
   <a class="brand" href="#top"><span class="mark" aria-hidden="true">AM</span>Atharva<span class="dot">.</span></a>
   <nav aria-label="Main">
@@ -30,12 +88,12 @@
 </header>
 
 <main id="main">
-<section class="hero" id="top">
+<section class="hero" id="top" data-sc-act="flow">
   <div class="hero-text">
     <p class="badge"><span class="live" aria-hidden="true"></span>MTS-2 at Panasonic Avionics</p>
     <p class="hello">Hello, I'm</p>
     <h1>Atharva<br>Mahamuni</h1>
-    <p class="tag">Android Developer</p>
+    <p class="tag">Android Developer · IFE Systems</p>
     <p class="lede">I build Android apps in Kotlin and Jetpack Compose with MVVM and Clean Architecture. Today that means in-flight entertainment apps on seat-back screens; before that, an internal app for the National Stock Exchange. I own features end to end, from UI and API integration to testing, CI/CD and release.</p>
     <ul class="focus" aria-label="Focus areas">
       <li>Clean Architecture</li>
@@ -54,22 +112,23 @@
       <div><dt>3</dt><dd>product lines on a<br>shared framework</dd></div>
     </dl>
   </div>
+
   <div class="hero-art">
-    <div class="orbit" aria-hidden="true"></div>
-    <div class="ring" aria-hidden="true"></div>
-    <img class="photo" src="assets/atharva-480.webp" width="480" height="480" alt="Atharva Mahamuni smiling outdoors in sunglasses with green hills behind">
-    <div class="sats" aria-hidden="true">
-      <span class="sat sat-a"><span class="chip">Kotlin</span></span>
-      <span class="sat sat-b"><span class="chip">Compose</span></span>
-      <span class="sat sat-e"><span class="chip">Android</span></span>
-      <span class="sat sat-f"><span class="chip">MVVM</span></span>
-      <span class="sat sat-c"><span class="label">Pune, India</span></span>
-      <span class="sat sat-d"><span class="bead"></span></span>
+    <div class="ife-rig-box" title="Interactive 3D In-Flight Entertainment Screen & Architecture Teardown">
+      <canvas id="ife-canvas" width="460" height="460" aria-label="3D model of IFE screen and Clean Architecture layers"></canvas>
+    </div>
+    <div class="rig-controls">
+      <button type="button" id="teardown-toggle-btn" class="rig-btn" aria-pressed="false">Explode Architecture</button>
+      <span class="rig-hint">Drag to rotate 3D view</span>
+    </div>
+    <div class="author-chip">
+      <img class="photo" src="assets/atharva-480.webp" width="38" height="38" alt="Atharva Mahamuni">
+      <div class="info">
+        <strong>Atharva Mahamuni</strong>
+        <span>Pune, India · @athmatwt</span>
+      </div>
     </div>
   </div>
-  <span class="shape tri" aria-hidden="true"></span>
-  <span class="shape dia" aria-hidden="true"></span>
-  <span class="shape ring-s" aria-hidden="true"></span>
 </section>
 
 <section class="section" id="experience">
@@ -119,30 +178,30 @@
     <article class="card featured">
       <p class="kind">Featured · Web</p>
       <h3>ToyTools</h3>
-      <p>A data-driven platform for building and publishing fast, minimalist utility tools at scale.</p>
-      <p class="stack">TypeScript · Astro</p>
-      <p class="links"><a href="https://toytoolsapp.com">Live site</a><a href="https://github.com/AtharvaMahamuni/toytools">Repo</a></p>
+      <p>A data-driven platform for building and publishing fast, minimalist utility tools at scale with automated SEO engines.</p>
+      <p class="stack">TypeScript · Astro · Tailwind</p>
+      <p class="links"><a href="https://toytoolsapp.com">Live site <span aria-hidden="true">↗</span></a><a href="https://github.com/AtharvaMahamuni/toytools">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
     <article class="card">
       <p class="kind">Android</p>
       <h3>ToyTools for Android</h3>
-      <p>Everyday utility tools on the phone.</p>
-      <p class="stack">Kotlin</p>
-      <p class="links"><a href="https://github.com/AtharvaMahamuni/toyTools-android">Repo</a></p>
+      <p>Everyday utility tools on the phone built with Clean Architecture, Kotlin Coroutines, and Jetpack Compose.</p>
+      <p class="stack">Kotlin · Jetpack Compose · MVVM</p>
+      <p class="links"><a href="https://github.com/AtharvaMahamuni/toyTools-android">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
     <article class="card">
       <p class="kind">Android · IoT</p>
       <h3>IoT Robot Controller</h3>
       <p>An Android app that controls a NodeMCU-based robot over Bluetooth, built for the college Automation and Robotics Cell.</p>
-      <p class="stack">Android · Bluetooth</p>
-      <p class="links"><a href="https://github.com/AtharvaMahamuni/robot-controller-app">Repo</a></p>
+      <p class="stack">Android · Bluetooth LE · Microcontrollers</p>
+      <p class="links"><a href="https://github.com/AtharvaMahamuni/robot-controller-app">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
     <article class="card">
       <p class="kind">Full stack</p>
       <h3>Spotify full-stack app</h3>
       <p>A Spotify-style full-stack app built from scratch, with a separate frontend and an API backend on MySQL.</p>
       <p class="stack">JavaScript · Node.js · MySQL</p>
-      <p class="links"><a href="https://github.com/AtharvaMahamuni/Spotify_Full_stack_app">Repo</a></p>
+      <p class="links"><a href="https://github.com/AtharvaMahamuni/Spotify_Full_stack_app">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
   </div>
 </section>
@@ -151,20 +210,21 @@
   <div class="band-inner">
     <p class="eyebrow light">Skills &amp; tools</p>
     <dl class="skills">
-      <div><dt class="c1">Languages</dt><dd><span>Kotlin</span><span>Java</span></dd></div>
-      <div><dt class="c2">Android</dt><dd><span>Android SDK</span><span>Jetpack Compose</span><span>ViewModel</span><span>Navigation</span><span>Room</span><span>WorkManager</span><span>Material Design</span><span>ExoPlayer/Media3</span><span>Bluetooth LE</span></dd></div>
-      <div><dt class="c3">Architecture</dt><dd><span>MVVM</span><span>Clean Architecture</span><span>Repository Pattern</span><span>Singleton</span><span>SOLID</span></dd></div>
+      <div><dt class="c1">Languages</dt><dd><span>Kotlin</span><span>Java</span><span>TypeScript</span><span>SQL</span></dd></div>
+      <div><dt class="c2">Android</dt><dd><span>Android SDK</span><span>Jetpack Compose</span><span>ViewModel</span><span>Navigation</span><span>Room</span><span>WorkManager</span><span>Material Design 3</span><span>ExoPlayer/Media3</span><span>Bluetooth LE</span></dd></div>
+      <div><dt class="c3">Architecture</dt><dd><span>MVVM</span><span>Clean Architecture</span><span>Repository Pattern</span><span>Singleton</span><span>SOLID</span><span>Modular Architecture</span></dd></div>
       <div><dt class="c4">Async &amp; data</dt><dd><span>Coroutines</span><span>Flow/StateFlow</span><span>RxJava</span><span>Retrofit</span><span>REST APIs</span><span>Dagger Hilt</span><span>SQLite</span><span>Firebase</span></dd></div>
       <div><dt class="c5">Testing</dt><dd><span>JUnit</span><span>Mockito</span><span>Espresso</span><span>Compose UI Testing</span><span>Crashlytics</span><span>LeakCanary</span></dd></div>
       <div><dt class="c6">Build &amp; CI/CD</dt><dd><span>Gradle Kotlin DSL</span><span>Version Catalogs</span><span>Build Flavors &amp; Signing</span><span>Fastlane</span><span>GitHub Actions</span><span>Jenkins</span><span>GitLab CI</span><span>Play Store</span></dd></div>
       <div><dt class="c1">Tools</dt><dd><span>Android Studio</span><span>Git</span><span>Jira</span><span>Agile/Scrum</span><span>Code Review</span></dd></div>
-      <div><dt class="c2">Familiar with</dt><dd><span>Kotlin Multiplatform</span><span>Compose Multiplatform</span></dd></div>
+      <div><dt class="c2">Familiar with</dt><dd><span>Kotlin Multiplatform</span><span>Compose Multiplatform</span><span>Three.js / WebGL</span></dd></div>
     </dl>
   </div>
 </section>
 
 <section class="section" id="education">
   <p class="eyebrow">Education</p>
+  <h2>Academic background</h2>
   <div class="edu">
     <div>
       <h3>B.Tech in Computer Science and Engineering</h3>
@@ -174,9 +234,21 @@
   </div>
 </section>
 
+<section class="discovery-panel" aria-label="Machine Readable Discovery">
+  <p class="eyebrow">Machine Readable &amp; AI Discovery</p>
+  <div class="discovery-grid">
+    <a class="discovery-link" href="llms.txt"><code>/llms.txt</code><span>Concise LLM digest</span></a>
+    <a class="discovery-link" href="llms-full.txt"><code>/llms-full.txt</code><span>Comprehensive profile</span></a>
+    <a class="discovery-link" href="identity.json"><code>/identity.json</code><span>Schema.org JSON-LD</span></a>
+    <a class="discovery-link" href="ai.json"><code>/ai.json</code><span>Agent crawler manifest</span></a>
+    <a class="discovery-link" href="brand.txt"><code>/brand.txt</code><span>Author verification</span></a>
+    <a class="discovery-link" href="faq-ai.txt"><code>/faq-ai.txt</code><span>Recruiter &amp; tech FAQ</span></a>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <h2>Let's build something.</h2>
-  <p>The best way to reach me is email. I'm also on LinkedIn and GitHub.</p>
+  <p>The best way to reach me is email. I'm also active on LinkedIn and GitHub.</p>
   <div class="cta center">
     <a class="btn primary" href="mailto:atharvamahamuni54@gmail.com">atharvamahamuni54@gmail.com</a>
     <a class="btn" href="https://www.linkedin.com/in/atharvamahamuni">LinkedIn</a>
@@ -186,7 +258,7 @@
 </main>
 
 <footer class="foot">
-  <p>© 2026 Atharva Mahamuni · Pune, India</p>
+  <p>© 2026 Atharva Mahamuni · Pune, India · <a href="https://x.com/athmatwt">@athmatwt</a></p>
 </footer>
 </body>
 </html>

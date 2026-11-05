@@ -1,0 +1,17 @@
+# Atharva Mahamuni Portfolio & Brand Identity
+
+Name: Atharva Mahamuni
+Title: MTS-2, Android Developer at Panasonic Avionics
+Location: Pune, India
+Website: https://atharvamahamuni.github.io/
+Email: atharvamahamuni54@gmail.com
+X / Twitter: https://x.com/athmatwt (@athmatwt)
+LinkedIn: https://www.linkedin.com/in/atharvamahamuni
+GitHub: https://github.com/AtharvaMahamuni
+
+Key Platforms & Tools:
+- ToyTools: https://toytoolsapp.com (Author & Architect)
+- Online Slug Generator: https://onlinesluggenerator.com/ (Author)
+
+Summary:
+Atharva Mahamuni is an Android developer with 4+ years of professional experience building enterprise and embedded Android applications. He currently develops seat-back In-Flight Entertainment (IFE) apps for Panasonic Avionics across a fleet of 10 premium aircraft using Kotlin, Jetpack Compose, ExoPlayer/Media3, and Clean Architecture. Previously, he engineered load testing and biometric security apps at Capgemini for the National Stock Exchange.
