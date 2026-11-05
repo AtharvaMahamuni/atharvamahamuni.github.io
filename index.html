@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atharva Mahamuni · Android Developer &amp; IFE Systems</title>
-<meta name="description" content="Atharva Mahamuni, Android developer in Pune with 4 years of Kotlin, Jetpack Compose, and Clean Architecture experience. MTS-2 at Panasonic Avionics building in-flight entertainment systems.">
+<meta name="description" content="Atharva Mahamuni (@athmatwt), Android developer in Pune with 4 years of Kotlin, Jetpack Compose, and Clean Architecture experience. MTS-2 at Panasonic Avionics building in-flight entertainment systems.">
 <meta property="og:title" content="Atharva Mahamuni · Android Developer &amp; IFE Systems">
 <meta property="og:description" content="Android developer building in-flight entertainment apps and Clean Architecture systems in Kotlin &amp; Jetpack Compose.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atharvamahamuni.github.io/">
 <meta property="og:image" content="https://atharvamahamuni.github.io/assets/atharva-480.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athmatwt">
+<meta name="twitter:creator" content="@athmatwt">
 <meta name="theme-color" content="#f7f7f4">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="assets/scrollcraft.css">
 <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__anim)document.documentElement.classList.remove("js")},2500)</script>
 <script src="main.js" defer></script>
-<script src="assets/ife-teardown.js" defer></script>
-<script src="assets/scrollcraft.js" defer></script>
 
 <!-- Structured Data: JSON-LD Graph for Person and ProfilePage -->
 <script type="application/ld+json">
@@ -28,6 +28,7 @@
       "@type": "Person",
       "@id": "https://atharvamahamuni.github.io/#atharva",
       "name": "Atharva Mahamuni",
+      "alternateName": "@athmatwt",
       "jobTitle": "MTS-2, Android Developer",
       "worksFor": {
         "@type": "Organization",
@@ -39,6 +40,7 @@
       },
       "url": "https://atharvamahamuni.github.io/",
       "image": "https://atharvamahamuni.github.io/assets/atharva-480.webp",
+      "email": "mailto:atharvamahamuni54@gmail.com",
       "sameAs": [
         "https://x.com/athmatwt",
         "https://www.linkedin.com/in/atharvamahamuni",
@@ -48,12 +50,13 @@
         "Android Development",
         "Kotlin",
         "Jetpack Compose",
-        "In-Flight Entertainment Systems",
-        "Clean Architecture",
+        "In-Flight Entertainment Systems (IFE)",
         "ExoPlayer / Media3",
-        "Coroutines & StateFlow",
+        "Clean Architecture",
         "MVVM",
-        "Dagger Hilt"
+        "Coroutines & StateFlow",
+        "Dagger Hilt",
+        "Kotlin Multiplatform"
       ]
     },
     {
@@ -80,6 +83,7 @@
   <a class="brand" href="#top"><span class="mark" aria-hidden="true">AM</span>Atharva<span class="dot">.</span></a>
   <nav aria-label="Main">
     <a href="#experience">Experience</a>
+    <a href="#architecture">Architecture</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#education">Education</a>
@@ -88,21 +92,24 @@
 </header>
 
 <main id="main">
-<section class="hero" id="top" data-sc-act="flow">
+<!-- Hero Section -->
+<section class="hero" id="top">
   <div class="hero-text">
     <p class="badge"><span class="live" aria-hidden="true"></span>MTS-2 at Panasonic Avionics</p>
     <p class="hello">Hello, I'm</p>
     <h1>Atharva<br>Mahamuni</h1>
     <p class="tag">Android Developer · IFE Systems</p>
-    <p class="lede">I build Android apps in Kotlin and Jetpack Compose with MVVM and Clean Architecture. Today that means in-flight entertainment apps on seat-back screens; before that, an internal app for the National Stock Exchange. I own features end to end, from UI and API integration to testing, CI/CD and release.</p>
+    <p class="lede">I build Android apps in Kotlin and Jetpack Compose with MVVM and Clean Architecture. Today that means in-flight entertainment apps on seat-back screens across 10 commercial aircraft; before that, an internal app for the National Stock Exchange. I own features end to end, from UI and API integration to testing, CI/CD and release.</p>
     <ul class="focus" aria-label="Focus areas">
       <li>Clean Architecture</li>
-      <li>IFE systems</li>
-      <li>Agentic coding / AI</li>
+      <li>IFE Systems</li>
+      <li>Jetpack Compose</li>
+      <li>Agentic Coding / AI</li>
       <li>Kotlin Multiplatform</li>
     </ul>
     <div class="cta">
-      <a class="btn primary" href="#projects">See my projects <span aria-hidden="true">→</span></a>
+      <a class="btn primary" href="#projects">See my projects <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-x" href="https://x.com/athmatwt" target="_blank" rel="noopener"><span class="x-glyph">𝕏</span> @athmatwt</a>
       <a class="btn" href="mailto:atharvamahamuni54@gmail.com">Email me</a>
       <a class="btn" href="https://github.com/AtharvaMahamuni">GitHub</a>
     </div>
@@ -113,24 +120,33 @@
     </dl>
   </div>
 
+  <!-- 3D Spatial Hero Avatar & Depth Planes (Tactile, hardware-accelerated, 100% visible) -->
   <div class="hero-art">
-    <div class="ife-rig-box" title="Interactive 3D In-Flight Entertainment Screen & Architecture Teardown">
-      <canvas id="ife-canvas" width="460" height="460" aria-label="3D model of IFE screen and Clean Architecture layers"></canvas>
-    </div>
-    <div class="rig-controls">
-      <button type="button" id="teardown-toggle-btn" class="rig-btn" aria-pressed="false">Explode Architecture</button>
-      <span class="rig-hint">Drag to rotate 3D view</span>
-    </div>
-    <div class="author-chip">
-      <img class="photo" src="assets/atharva-480.webp" width="38" height="38" alt="Atharva Mahamuni">
-      <div class="info">
-        <strong>Atharva Mahamuni</strong>
-        <span>Pune, India · @athmatwt</span>
+    <div class="spatial-card" id="hero-card">
+      <div class="spatial-glow" aria-hidden="true"></div>
+      <div class="spatial-frame">
+        <img class="photo" src="assets/atharva-480.webp" width="480" height="480" alt="Atharva Mahamuni smiling outdoors in Pune with green hills behind">
+        <div class="spatial-sheen" aria-hidden="true"></div>
+        <div class="spatial-byline">
+          <div>
+            <strong>Atharva Mahamuni</strong>
+            <span>Pune, India · MTS-2</span>
+          </div>
+          <a class="x-link" href="https://x.com/athmatwt" target="_blank" rel="noopener">@athmatwt</a>
+        </div>
+      </div>
+      <!-- 3D Floating Depth Chips -->
+      <div class="spatial-chips" aria-hidden="true">
+        <span class="d-chip d-chip-1">Kotlin &amp; Compose</span>
+        <span class="d-chip d-chip-2">Media3 / ExoPlayer</span>
+        <span class="d-chip d-chip-3">Clean Architecture</span>
+        <span class="d-chip d-chip-4">Panasonic Avionics</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Experience Section -->
 <section class="section" id="experience">
   <p class="eyebrow">Experience</p>
   <h2>Where I've worked</h2>
@@ -171,6 +187,170 @@
   </div>
 </section>
 
+<!-- Interactive Android Device Simulator & Architecture Inspector -->
+<section class="simulator-section" id="architecture">
+  <p class="eyebrow">Interactive Simulator</p>
+  <h2>Seat-Back IFE &amp; Architecture Rig</h2>
+  <p class="lede">Explore the interactive Android seat-back IFE display and inspect the underlying Clean Architecture layers driving the application.</p>
+
+  <div class="device-rig">
+    <div class="device-header">
+      <div class="device-status">
+        <span class="hud-dot" aria-hidden="true"></span>
+        <span>Panasonic Seat-Back Display · Android 14 HAL</span>
+      </div>
+      <div class="device-tabs" role="tablist">
+        <button type="button" class="tab-btn active" role="tab" id="tab-ife" aria-selected="true" aria-controls="panel-ife" data-tab="ife">In-Flight HUD</button>
+        <button type="button" class="tab-btn" role="tab" id="tab-arch" aria-selected="false" aria-controls="panel-arch" data-tab="arch">Clean Architecture</button>
+        <button type="button" class="tab-btn" role="tab" id="tab-perf" aria-selected="false" aria-controls="panel-perf" data-tab="perf">Performance &amp; Telemetry</button>
+      </div>
+    </div>
+
+    <div class="device-screen">
+      <!-- Panel 1: Live Seat-Back IFE Screen -->
+      <div class="panel-content active" id="panel-ife" role="tabpanel" aria-labelledby="tab-ife">
+        <div class="ife-view">
+          <div class="telemetry-card">
+            <div class="flight-route">
+              <div>
+                <strong>PNQ ✈ HND</strong>
+                <div style="font-size:12px;color:var(--muted);">Flight PA-702 · Pune to Tokyo</div>
+              </div>
+              <span>En Route · On Schedule</span>
+            </div>
+            <dl class="telemetry-grid">
+              <div>
+                <dt>Altitude</dt>
+                <dd>38,000 FT</dd>
+              </div>
+              <div>
+                <dt>Ground Speed</dt>
+                <dd>510 KTS</dd>
+              </div>
+              <div>
+                <dt>Outside Air</dt>
+                <dd>-52°C</dd>
+              </div>
+            </dl>
+            <!-- Media3 Player Bar -->
+            <div class="player-bar">
+              <button type="button" class="play-toggle-btn" id="play-btn" aria-label="Play/Pause Media stream">▶</button>
+              <div class="track-info">
+                <strong>In-Flight Entertainment Suite</strong>
+                <span>Media3 / ExoPlayer · 4K HEVC Stream</span>
+              </div>
+              <div class="eq-bars" aria-hidden="true">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ife-meta-card">
+            <h4>Fleet-Wide Reliability</h4>
+            <p>Active on 10 commercial aircraft. Powers passenger entertainment with adaptive streaming, background audio routing, and low-latency touch controls.</p>
+            <div class="ife-tech-chips">
+              <span>ExoPlayer</span>
+              <span>Media3</span>
+              <span>DRM Widevine</span>
+              <span>AudioTrack</span>
+              <span>Clean Arch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Clean Architecture Stack View -->
+      <div class="panel-content" id="panel-arch" role="tabpanel" aria-labelledby="tab-arch">
+        <div class="arch-view">
+          <div class="arch-layers">
+            <button type="button" class="arch-layer-btn active" data-layer="compose" style="--layer-accent: var(--timeline-ui)">
+              <div>
+                <strong>Presentation: Jetpack Compose</strong>
+                <span>Declarative UI, State Hoisting, Recomposition Safety</span>
+              </div>
+              <span>→</span>
+            </button>
+            <button type="button" class="arch-layer-btn" data-layer="viewmodel" style="--layer-accent: var(--timeline-vm)">
+              <div>
+                <strong>State: ViewModel &amp; StateFlow</strong>
+                <span>UDF (Unidirectional Data Flow), Coroutines, Lifecycle scopes</span>
+              </div>
+              <span>→</span>
+            </button>
+            <button type="button" class="arch-layer-btn" data-layer="domain" style="--layer-accent: var(--timeline-domain)">
+              <div>
+                <strong>Domain: Clean UseCases</strong>
+                <span>Pure Kotlin business logic, Repository contracts, SOLID</span>
+              </div>
+              <span>→</span>
+            </button>
+            <button type="button" class="arch-layer-btn" data-layer="data" style="--layer-accent: var(--timeline-data)">
+              <div>
+                <strong>Data: Room DB &amp; Retrofit</strong>
+                <span>Offline-first caching, REST networking, JSON parsing</span>
+              </div>
+              <span>→</span>
+            </button>
+            <button type="button" class="arch-layer-btn" data-layer="hal" style="--layer-accent: var(--timeline-hal)">
+              <div>
+                <strong>Hardware: Android Media3 HAL</strong>
+                <span>Hardware codecs, seat-back touch HAL, DRM pipeline</span>
+              </div>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="arch-code-box">
+            <pre><code id="arch-code-display">// Jetpack Compose Seat-Back UI Layer
+@Composable
+fun SeatBackScreen(
+    viewModel: FlightViewModel = hiltViewModel()
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    FlightTelemetryHUD(
+        altitude = state.altitude,
+        speed = state.groundSpeed,
+        route = state.route
+    )
+}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Performance & Telemetry -->
+      <div class="panel-content" id="panel-perf" role="tabpanel" aria-labelledby="tab-perf">
+        <div class="telemetry-card">
+          <div class="flight-route">
+            <strong>System Performance &amp; Startup Profiling</strong>
+            <span>Macrobenchmark Verified</span>
+          </div>
+          <dl class="telemetry-grid">
+            <div>
+              <dt>Cold Start (Baseline Profiles)</dt>
+              <dd>320 ms</dd>
+            </div>
+            <div>
+              <dt>Dropped Frames (Jank rate)</dt>
+              <dd>&lt; 0.1%</dd>
+            </div>
+            <div>
+              <dt>App Size (R8 Shrinking)</dt>
+              <dd>18.4 MB</dd>
+            </div>
+          </dl>
+          <p style="margin:12px 0 0;font-size:13.5px;color:var(--body);">
+            Engineered with Baseline Profiles and deferred dependency injection to guarantee immediate responsiveness on seat-back touch hardware during airline turnaround cycles.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
 <section class="section" id="projects">
   <p class="eyebrow">Projects</p>
   <h2>Things I've built</h2>
@@ -180,32 +360,33 @@
       <h3>ToyTools</h3>
       <p>A data-driven platform for building and publishing fast, minimalist utility tools at scale with automated SEO engines.</p>
       <p class="stack">TypeScript · Astro · Tailwind</p>
-      <p class="links"><a href="https://toytoolsapp.com">Live site <span aria-hidden="true">↗</span></a><a href="https://github.com/AtharvaMahamuni/toytools">Repo <span aria-hidden="true">↗</span></a></p>
+      <p class="links"><a href="https://toytoolsapp.com" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a href="https://github.com/AtharvaMahamuni/toytools" target="_blank" rel="noopener">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
     <article class="card">
       <p class="kind">Android</p>
       <h3>ToyTools for Android</h3>
       <p>Everyday utility tools on the phone built with Clean Architecture, Kotlin Coroutines, and Jetpack Compose.</p>
       <p class="stack">Kotlin · Jetpack Compose · MVVM</p>
-      <p class="links"><a href="https://github.com/AtharvaMahamuni/toyTools-android">Repo <span aria-hidden="true">↗</span></a></p>
+      <p class="links"><a href="https://github.com/AtharvaMahamuni/toyTools-android" target="_blank" rel="noopener">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
     <article class="card">
       <p class="kind">Android · IoT</p>
       <h3>IoT Robot Controller</h3>
       <p>An Android app that controls a NodeMCU-based robot over Bluetooth, built for the college Automation and Robotics Cell.</p>
       <p class="stack">Android · Bluetooth LE · Microcontrollers</p>
-      <p class="links"><a href="https://github.com/AtharvaMahamuni/robot-controller-app">Repo <span aria-hidden="true">↗</span></a></p>
+      <p class="links"><a href="https://github.com/AtharvaMahamuni/robot-controller-app" target="_blank" rel="noopener">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
     <article class="card">
       <p class="kind">Full stack</p>
       <h3>Spotify full-stack app</h3>
       <p>A Spotify-style full-stack app built from scratch, with a separate frontend and an API backend on MySQL.</p>
       <p class="stack">JavaScript · Node.js · MySQL</p>
-      <p class="links"><a href="https://github.com/AtharvaMahamuni/Spotify_Full_stack_app">Repo <span aria-hidden="true">↗</span></a></p>
+      <p class="links"><a href="https://github.com/AtharvaMahamuni/Spotify_Full_stack_app" target="_blank" rel="noopener">Repo <span aria-hidden="true">↗</span></a></p>
     </article>
   </div>
 </section>
 
+<!-- Skills Section -->
 <section class="band" id="skills">
   <div class="band-inner">
     <p class="eyebrow light">Skills &amp; tools</p>
@@ -222,6 +403,7 @@
   </div>
 </section>
 
+<!-- Education Section -->
 <section class="section" id="education">
   <p class="eyebrow">Education</p>
   <h2>Academic background</h2>
@@ -234,6 +416,7 @@
   </div>
 </section>
 
+<!-- Discovery Panel -->
 <section class="discovery-panel" aria-label="Machine Readable Discovery">
   <p class="eyebrow">Machine Readable &amp; AI Discovery</p>
   <div class="discovery-grid">
@@ -246,19 +429,21 @@
   </div>
 </section>
 
+<!-- Contact Section -->
 <section class="contact" id="contact">
   <h2>Let's build something.</h2>
-  <p>The best way to reach me is email. I'm also active on LinkedIn and GitHub.</p>
+  <p>The best way to reach me is email or X. I'm also active on LinkedIn and GitHub.</p>
   <div class="cta center">
     <a class="btn primary" href="mailto:atharvamahamuni54@gmail.com">atharvamahamuni54@gmail.com</a>
-    <a class="btn" href="https://www.linkedin.com/in/atharvamahamuni">LinkedIn</a>
-    <a class="btn" href="https://github.com/AtharvaMahamuni">GitHub</a>
+    <a class="btn btn-x" href="https://x.com/athmatwt" target="_blank" rel="noopener"><span class="x-glyph">𝕏</span> @athmatwt</a>
+    <a class="btn" href="https://www.linkedin.com/in/atharvamahamuni" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/AtharvaMahamuni" target="_blank" rel="noopener">GitHub</a>
   </div>
 </section>
 </main>
 
 <footer class="foot">
-  <p>© 2026 Atharva Mahamuni · Pune, India · <a href="https://x.com/athmatwt">@athmatwt</a></p>
+  <p>© 2026 Atharva Mahamuni · Pune, India · Connect on X: <a href="https://x.com/athmatwt" target="_blank" rel="noopener">@athmatwt</a></p>
 </footer>
 </body>
 </html>

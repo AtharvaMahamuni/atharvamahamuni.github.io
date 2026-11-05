@@ -100,19 +100,38 @@ await test('Education nav item becomes active', {}, async p => {
   assert(active.length === 1 && active[0] === '#education', 'active ' + JSON.stringify(active));
 });
 
-await test('3D IFE teardown rig initializes and toggles mode', {}, async p => {
-  const canvasExists = await p.locator('#ife-canvas').count();
-  assert(canvasExists === 1, 'ife-canvas missing');
-  const btn = p.locator('#teardown-toggle-btn');
-  assert(await btn.count() === 1, 'teardown toggle button missing');
-  const initialAria = await btn.getAttribute('aria-pressed');
-  assert(initialAria === 'false', 'initial aria-pressed not false');
-  await btn.click();
+await test('3D spatial hero card is present and visible', {}, async p => {
+  const cardExists = await p.locator('#hero-card').count();
+  assert(cardExists === 1, 'hero-card missing');
+  const photo = p.locator('#hero-card img.photo');
+  assert(await photo.count() === 1, 'hero photo missing');
+  const chips = await p.locator('#hero-card .d-chip').count();
+  assert(chips >= 4, `expected 4+ 3D depth chips, got ${chips}`);
+});
+
+await test('interactive device simulator switches tabs and displays Clean Arch code', {}, async p => {
+  const tabArch = p.locator('#tab-arch');
+  assert(await tabArch.count() === 1, 'Clean Arch tab button missing');
+  await tabArch.click();
   await p.waitForTimeout(200);
-  const clickedAria = await btn.getAttribute('aria-pressed');
-  assert(clickedAria === 'true', 'clicked aria-pressed not true');
-  const explodeVal = await p.evaluate(() => window.__ifeRig ? window.__ifeRig.state.targetExplode : null);
-  assert(explodeVal === 1, `targetExplode should be 1, got ${explodeVal}`);
+  const isSelected = await tabArch.getAttribute('aria-selected');
+  assert(isSelected === 'true', 'Clean Arch tab not active');
+  const codeText = await p.locator('#arch-code-display').textContent();
+  assert(codeText.includes('SeatBackScreen'), 'Clean Arch code not displayed');
+
+  // Test layer switcher click
+  const domainBtn = p.locator('.arch-layer-btn[data-layer="domain"]');
+  await domainBtn.click();
+  await p.waitForTimeout(200);
+  const updatedCode = await p.locator('#arch-code-display').textContent();
+  assert(updatedCode.includes('GetFlightTelemetryUseCase'), 'domain layer code not displayed');
+});
+
+await test('X handle @athmatwt links are present across the page', {}, async p => {
+  const xLinks = await p.evaluate(() => {
+    return [...document.querySelectorAll('a[href*="x.com/athmatwt"]')].map(a => a.href);
+  });
+  assert(xLinks.length >= 2, `expected at least 2 X links, got ${xLinks.length}`);
 });
 
 await test('JSON-LD schema metadata is present and valid', {}, async p => {
@@ -123,6 +142,7 @@ await test('JSON-LD schema metadata is present and valid', {}, async p => {
   assert(jsonLd && jsonLd['@graph'], 'missing @graph in JSON-LD');
   const person = jsonLd['@graph'].find(item => item['@type'] === 'Person');
   assert(person && person.name === 'Atharva Mahamuni', 'person metadata invalid');
+  assert(person.sameAs && person.sameAs.includes('https://x.com/athmatwt'), 'missing X handle in sameAs');
 });
 
 await browser.close(); server.close();
